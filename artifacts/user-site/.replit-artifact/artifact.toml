@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Gaming Platform"
+version = "1.0.0"
+id = "artifacts/user-site"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23727
+
+[services.development]
+run = "pnpm --filter @workspace/user-site run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/user-site", "run", "build" ]
+publicDir = "artifacts/user-site/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23727"
+BASE_PATH = "/"

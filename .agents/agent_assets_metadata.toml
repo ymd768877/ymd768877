@@ -1,0 +1,38 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "VfWbE9LJTHDQ5I1_wv6Id"
+uri = "file://artifacts/user-site/public/hero.png"
+type = "image"
+title = "Casino hero banner"
+
+[[generated]]
+id = "BHeRzXPPf0KC5TScSTPxa"
+uri = "file://artifacts/user-site/public/super-ace.png"
+type = "image"
+title = "Super Ace game cover"
+
+[[generated]]
+id = "94dYKM_p9hjJAzAq9SxU7"
+uri = "file://artifacts/user-site/public/wild-bounty.png"
+type = "image"
+title = "Wild Bounty game cover"
+
+[[generated]]
+id = "mJQOkMPFfRiQNEp4Fa4VT"
+uri = "file://artifacts/user-site/public/fortune-gems.png"
+type = "image"
+title = "Fortune Gems game cover"
+
+[[generated]]
+id = "4yL7qBz9SvbvX5y_Vezlt"
+uri = "file://artifacts/user-site/public/aviator.png"
+type = "image"
+title = "Aviator game cover"
+
+[[generated]]
+id = "Ubnm_P3jSz6g4WwjWeEbc"
+uri = "file://artifacts/user-site/public/flyx.png"
+type = "image"
+title = "Flyx game cover"
