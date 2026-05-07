@@ -123,6 +123,51 @@ export const GetMyTransactionsResponse = zod.array(
 );
 
 /**
+ * @summary Request a withdrawal
+ */
+export const RequestWithdrawBody = zod.object({
+  amount: zod.number(),
+  receiverPhone: zod.string(),
+  note: zod.string().optional(),
+});
+
+/**
+ * @summary Place a game bet (deducts balance)
+ */
+export const PlaceBetBody = zod.object({
+  amount: zod.number(),
+});
+
+export const PlaceBetResponse = zod.object({
+  id: zod.number(),
+  userId: zod.number(),
+  type: zod.enum(["deposit", "withdrawal", "credit", "debit"]),
+  amount: zod.number(),
+  status: zod.enum(["pending", "approved", "rejected"]),
+  note: zod.string().optional(),
+  senderPhone: zod.string().optional(),
+  createdAt: zod.coerce.date(),
+});
+
+/**
+ * @summary Claim game winnings (adds balance)
+ */
+export const ClaimWinBody = zod.object({
+  amount: zod.number(),
+});
+
+export const ClaimWinResponse = zod.object({
+  id: zod.number(),
+  userId: zod.number(),
+  type: zod.enum(["deposit", "withdrawal", "credit", "debit"]),
+  amount: zod.number(),
+  status: zod.enum(["pending", "approved", "rejected"]),
+  note: zod.string().optional(),
+  senderPhone: zod.string().optional(),
+  createdAt: zod.coerce.date(),
+});
+
+/**
  * @summary Request a deposit
  */
 export const RequestDepositBody = zod.object({

@@ -178,6 +178,81 @@ paths:
                 items:
                   $ref: "#/components/schemas/Transaction"
 
+  /transactions/withdraw:
+    post:
+      operationId: requestWithdraw
+      tags: [transactions]
+      summary: Request a withdrawal
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WithdrawRequest"
+      responses:
+        "201":
+          description: Withdrawal requested
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /transactions/game/bet:
+    post:
+      operationId: placeBet
+      tags: [transactions]
+      summary: Place a game bet (deducts balance)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GameBetRequest"
+      responses:
+        "200":
+          description: Bet placed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
+  /transactions/game/win:
+    post:
+      operationId: claimWin
+      tags: [transactions]
+      summary: Claim game winnings (adds balance)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GameWinRequest"
+      responses:
+        "200":
+          description: Win credited
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+
   /transactions/deposit:
     post:
       operationId: requestDeposit
@@ -675,6 +750,31 @@ components:
           properties:
             user:
               $ref: "#/components/schemas/User"
+
+    WithdrawRequest:
+      type: object
+      required: [amount, receiverPhone]
+      properties:
+        amount:
+          type: number
+        receiverPhone:
+          type: string
+        note:
+          type: string
+
+    GameBetRequest:
+      type: object
+      required: [amount]
+      properties:
+        amount:
+          type: number
+
+    GameWinRequest:
+      type: object
+      required: [amount]
+      properties:
+        amount:
+          type: number
 
     DepositRequest:
       type: object

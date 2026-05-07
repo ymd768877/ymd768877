@@ -129,6 +129,20 @@ export type TransactionWithUser = Transaction & {
   user?: User;
 };
 
+export interface WithdrawRequest {
+  amount: number;
+  receiverPhone: string;
+  note?: string;
+}
+
+export interface GameBetRequest {
+  amount: number;
+}
+
+export interface GameWinRequest {
+  amount: number;
+}
+
 export interface DepositRequest {
   amount: number;
   senderPhone: string;

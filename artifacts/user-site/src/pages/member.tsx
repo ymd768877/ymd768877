@@ -68,9 +68,14 @@ export default function Member() {
             <div className="text-xl font-black text-primary">Tk {Number(user.balance).toFixed(2)}</div>
           </div>
         </div>
-        <Button asChild size="sm" className="font-bold rounded-full">
-          <Link href="/deposit">Deposit</Link>
-        </Button>
+        <div className="flex gap-2">
+          <Button asChild size="sm" className="font-bold rounded-full">
+            <Link href="/deposit">Deposit</Link>
+          </Button>
+          <Button asChild size="sm" variant="outline" className="font-bold rounded-full border-orange-500 text-orange-500 hover:bg-orange-500/10">
+            <Link href="/withdraw">Withdraw</Link>
+          </Button>
+        </div>
       </div>
 
       {/* Info */}

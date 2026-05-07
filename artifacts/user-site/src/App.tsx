@@ -9,9 +9,11 @@ import Login from "@/pages/login";
 import Register from "@/pages/register";
 import Promotion from "@/pages/promotion";
 import Deposit from "@/pages/deposit";
+import Withdraw from "@/pages/withdraw";
 import Transactions from "@/pages/transactions";
 import Member from "@/pages/member";
 import Invite from "@/pages/invite";
+import Aviator from "@/pages/aviator";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -25,9 +27,11 @@ function Router() {
         <Route path="/register" component={Register} />
         <Route path="/promotion" component={Promotion} />
         <Route path="/deposit" component={Deposit} />
+        <Route path="/withdraw" component={Withdraw} />
         <Route path="/transactions" component={Transactions} />
         <Route path="/member" component={Member} />
         <Route path="/invite" component={Invite} />
+        <Route path="/aviator" component={Aviator} />
         <Route component={NotFound} />
       </Switch>
     </AppLayout>

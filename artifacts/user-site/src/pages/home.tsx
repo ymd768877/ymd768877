@@ -30,6 +30,29 @@ export default function Home() {
         </div>
       )}
 
+      {/* Aviator featured banner */}
+      <div className="px-4 w-full">
+        <Link href="/aviator">
+          <div className="w-full rounded-2xl overflow-hidden relative border-2 border-red-500/50 shadow-[0_0_24px_rgba(239,68,68,0.3)] cursor-pointer hover:scale-[1.01] transition-transform bg-gradient-to-br from-[#0a1628] to-[#1a0a0a]">
+            <div className="flex items-center gap-4 p-4">
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-[10px] bg-red-500 text-white px-1.5 py-0.5 rounded font-black tracking-wider">SPRIBE</span>
+                  <span className="text-[10px] text-red-400 font-bold animate-pulse">● LIVE</span>
+                </div>
+                <h2 className="text-2xl font-black text-white italic tracking-wide">AVIATOR</h2>
+                <p className="text-red-400 font-bold text-xs mt-0.5">Crash game · Multiplier up to 100x+</p>
+                <div className="mt-2 inline-flex items-center gap-1.5 bg-red-500 text-white text-xs font-black px-3 py-1.5 rounded-full">
+                  ✈ Play Now
+                </div>
+              </div>
+              <div className="text-7xl select-none">✈</div>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-red-900/20 pointer-events-none" />
+          </div>
+        </Link>
+      </div>
+
       {/* Hero Banner */}
       <div className="px-4 w-full">
         <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden relative border-2 border-border shadow-[0_0_20px_rgba(255,215,0,0.1)]">

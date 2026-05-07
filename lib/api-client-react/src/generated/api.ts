@@ -27,6 +27,8 @@ import type {
   DepositRequest,
   ErrorResponse,
   Game,
+  GameBetRequest,
+  GameWinRequest,
   GetAdminTransactionsParams,
   GetGamesParams,
   HealthStatus,
@@ -40,6 +42,7 @@ import type {
   UpdateStatusRequest,
   UpdateTransactionStatusRequest,
   User,
+  WithdrawRequest,
 } from "./api.schemas";
 
 import { customFetch } from "../custom-fetch";
@@ -760,6 +763,264 @@ export function useGetMyTransactions<
 
   return { ...query, queryKey: queryOptions.queryKey };
 }
+
+/**
+ * @summary Request a withdrawal
+ */
+export const getRequestWithdrawUrl = () => {
+  return `/api/transactions/withdraw`;
+};
+
+export const requestWithdraw = async (
+  withdrawRequest: WithdrawRequest,
+  options?: RequestInit,
+): Promise<Transaction> => {
+  return customFetch<Transaction>(getRequestWithdrawUrl(), {
+    ...options,
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(withdrawRequest),
+  });
+};
+
+export const getRequestWithdrawMutationOptions = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof requestWithdraw>>,
+    TError,
+    { data: BodyType<WithdrawRequest> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof requestWithdraw>>,
+  TError,
+  { data: BodyType<WithdrawRequest> },
+  TContext
+> => {
+  const mutationKey = ["requestWithdraw"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof requestWithdraw>>,
+    { data: BodyType<WithdrawRequest> }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return requestWithdraw(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type RequestWithdrawMutationResult = NonNullable<
+  Awaited<ReturnType<typeof requestWithdraw>>
+>;
+export type RequestWithdrawMutationBody = BodyType<WithdrawRequest>;
+export type RequestWithdrawMutationError = ErrorType<ErrorResponse>;
+
+/**
+ * @summary Request a withdrawal
+ */
+export const useRequestWithdraw = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof requestWithdraw>>,
+    TError,
+    { data: BodyType<WithdrawRequest> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof requestWithdraw>>,
+  TError,
+  { data: BodyType<WithdrawRequest> },
+  TContext
+> => {
+  return useMutation(getRequestWithdrawMutationOptions(options));
+};
+
+/**
+ * @summary Place a game bet (deducts balance)
+ */
+export const getPlaceBetUrl = () => {
+  return `/api/transactions/game/bet`;
+};
+
+export const placeBet = async (
+  gameBetRequest: GameBetRequest,
+  options?: RequestInit,
+): Promise<Transaction> => {
+  return customFetch<Transaction>(getPlaceBetUrl(), {
+    ...options,
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(gameBetRequest),
+  });
+};
+
+export const getPlaceBetMutationOptions = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof placeBet>>,
+    TError,
+    { data: BodyType<GameBetRequest> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof placeBet>>,
+  TError,
+  { data: BodyType<GameBetRequest> },
+  TContext
+> => {
+  const mutationKey = ["placeBet"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof placeBet>>,
+    { data: BodyType<GameBetRequest> }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return placeBet(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type PlaceBetMutationResult = NonNullable<
+  Awaited<ReturnType<typeof placeBet>>
+>;
+export type PlaceBetMutationBody = BodyType<GameBetRequest>;
+export type PlaceBetMutationError = ErrorType<ErrorResponse>;
+
+/**
+ * @summary Place a game bet (deducts balance)
+ */
+export const usePlaceBet = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof placeBet>>,
+    TError,
+    { data: BodyType<GameBetRequest> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof placeBet>>,
+  TError,
+  { data: BodyType<GameBetRequest> },
+  TContext
+> => {
+  return useMutation(getPlaceBetMutationOptions(options));
+};
+
+/**
+ * @summary Claim game winnings (adds balance)
+ */
+export const getClaimWinUrl = () => {
+  return `/api/transactions/game/win`;
+};
+
+export const claimWin = async (
+  gameWinRequest: GameWinRequest,
+  options?: RequestInit,
+): Promise<Transaction> => {
+  return customFetch<Transaction>(getClaimWinUrl(), {
+    ...options,
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(gameWinRequest),
+  });
+};
+
+export const getClaimWinMutationOptions = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof claimWin>>,
+    TError,
+    { data: BodyType<GameWinRequest> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof claimWin>>,
+  TError,
+  { data: BodyType<GameWinRequest> },
+  TContext
+> => {
+  const mutationKey = ["claimWin"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof claimWin>>,
+    { data: BodyType<GameWinRequest> }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return claimWin(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type ClaimWinMutationResult = NonNullable<
+  Awaited<ReturnType<typeof claimWin>>
+>;
+export type ClaimWinMutationBody = BodyType<GameWinRequest>;
+export type ClaimWinMutationError = ErrorType<ErrorResponse>;
+
+/**
+ * @summary Claim game winnings (adds balance)
+ */
+export const useClaimWin = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof claimWin>>,
+    TError,
+    { data: BodyType<GameWinRequest> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof claimWin>>,
+  TError,
+  { data: BodyType<GameWinRequest> },
+  TContext
+> => {
+  return useMutation(getClaimWinMutationOptions(options));
+};
 
 /**
  * @summary Request a deposit

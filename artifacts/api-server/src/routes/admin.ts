@@ -235,6 +235,19 @@ router.put("/admin/transactions/:transactionId/status", requireAdmin, async (req
     logger.info({ transactionId, userId: transaction.userId, amount: depositAmount }, "Deposit approved, balance updated");
   }
 
+  // Withdrawal rejected = refund balance
+  if (status === "rejected" && transaction.type === "withdrawal" && transaction.status === "pending") {
+    const withdrawAmount = parseFloat(transaction.amount ?? "0");
+    const [user] = await db.select().from(usersTable).where(eq(usersTable.id, transaction.userId));
+    if (user) {
+      const newBalance = parseFloat(user.balance ?? "0") + withdrawAmount;
+      await db.update(usersTable)
+        .set({ balance: newBalance.toFixed(2) })
+        .where(eq(usersTable.id, transaction.userId));
+    }
+    logger.info({ transactionId, userId: transaction.userId, amount: withdrawAmount }, "Withdrawal rejected, balance refunded");
+  }
+
   res.json({ ...updated, amount: parseFloat(updated.amount ?? "0") });
 });
 
