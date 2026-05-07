@@ -20,7 +20,7 @@ function multColor(m: number) {
   return "text-green-400";
 }
 
-const QUICK_BETS = [10, 50, 100, 500];
+const QUICK_BETS = [1, 10, 50, 100, 500];
 
 export default function Aviator() {
   const { data: user, refetch: refetchUser } = useGetMe({ query: { retry: false } });
