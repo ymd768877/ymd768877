@@ -10,7 +10,7 @@ export function TopHeader() {
       <div className="w-full max-w-[420px] bg-background/90 backdrop-blur-md border-b border-border h-16 flex items-center justify-between px-4 pointer-events-auto">
         <Link href="/" className="flex items-center gap-2">
           <div className="text-2xl font-black italic tracking-tighter text-primary drop-shadow-[0_0_10px_rgba(255,215,0,0.5)]">
-            WIN777
+            yasin666
           </div>
         </Link>
 

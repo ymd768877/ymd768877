@@ -26,7 +26,7 @@ export default function Login() {
     mutation: {
       onSuccess: (data) => {
         localStorage.setItem("auth_token", data.token);
-        toast({ title: "Login successful", description: "Welcome back to WIN777!" });
+        toast({ title: "Login successful", description: "Welcome back to yasin666!" });
         setLocation("/");
       },
       onError: (error: any) => {
@@ -47,7 +47,7 @@ export default function Login() {
     <div className="min-h-[calc(100vh-140px)] flex flex-col items-center justify-center px-6">
       <div className="w-full bg-secondary border border-border p-6 rounded-2xl shadow-xl">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-black italic text-primary drop-shadow-[0_0_10px_rgba(255,215,0,0.3)] mb-2">WIN777</h1>
+          <h1 className="text-3xl font-black italic text-primary drop-shadow-[0_0_10px_rgba(255,215,0,0.3)] mb-2">yasin666</h1>
           <p className="text-muted-foreground text-sm">Login to continue winning</p>
         </div>
 

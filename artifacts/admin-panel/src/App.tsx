@@ -62,7 +62,7 @@ function Sidebar({ open, onClose }: { open: boolean; onClose: () => void }) {
       >
         <div className="flex items-center gap-3 h-16 px-5 border-b border-border">
           <Shield className="w-6 h-6 text-primary" />
-          <span className="text-lg font-black text-primary tracking-tight">WIN777 ADMIN</span>
+          <span className="text-lg font-black text-primary tracking-tight">yasin666 ADMIN</span>
         </div>
         <nav className="flex-1 overflow-y-auto p-3 space-y-1">
           {NAV.map(({ href, label, icon: Icon }) => {

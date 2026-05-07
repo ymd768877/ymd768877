@@ -27,7 +27,7 @@ export default function Register() {
     mutation: {
       onSuccess: (data) => {
         localStorage.setItem("auth_token", data.token);
-        toast({ title: "Registration successful", description: "Welcome to WIN777!" });
+        toast({ title: "Registration successful", description: "Welcome to yasin666!" });
         setLocation("/");
       },
       onError: (error: any) => {
@@ -48,7 +48,7 @@ export default function Register() {
     <div className="min-h-[calc(100vh-140px)] flex flex-col items-center justify-center px-6 py-8">
       <div className="w-full bg-secondary border border-border p-6 rounded-2xl shadow-xl">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-black italic text-primary drop-shadow-[0_0_10px_rgba(255,215,0,0.3)] mb-2">JOIN WIN777</h1>
+          <h1 className="text-3xl font-black italic text-primary drop-shadow-[0_0_10px_rgba(255,215,0,0.3)] mb-2">JOIN yasin666</h1>
           <p className="text-muted-foreground text-sm">Create an account to start winning</p>
         </div>
 

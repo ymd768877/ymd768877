@@ -53,7 +53,7 @@ export default function Login() {
               <Shield className="w-8 h-8 text-primary" />
             </div>
             <h1 className="text-2xl font-black text-foreground">Owner Panel</h1>
-            <p className="text-sm text-muted-foreground">WIN777 Administration</p>
+            <p className="text-sm text-muted-foreground">yasin666 Administration</p>
           </div>
 
           <Form {...form}>

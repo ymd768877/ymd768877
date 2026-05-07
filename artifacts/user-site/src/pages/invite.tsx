@@ -8,7 +8,7 @@ export default function Invite() {
   const { data: user } = useGetMe({ query: { retry: false } });
   const { toast } = useToast();
 
-  const referralCode = user ? `WIN777-${user.id}` : null;
+  const referralCode = user ? `yasin666-${user.id}` : null;
   const referralLink = referralCode
     ? `${window.location.origin}${import.meta.env.BASE_URL}register?ref=${referralCode}`
     : null;
@@ -39,7 +39,7 @@ export default function Invite() {
         <div className="text-4xl mb-3">🎁</div>
         <h2 className="text-xl font-black text-primary">Invite Friends & Earn</h2>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          Invite your friends to join WIN777. Both of you benefit when they register and start playing!
+          Invite your friends to join yasin666. Both of you benefit when they register and start playing!
         </p>
       </div>
 
